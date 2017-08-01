@@ -33,7 +33,7 @@ ajaxAudioTrack()
 function ajaxAudioTrack () {
   var ajaxRequest = new window.XMLHttpRequest()
 
-  ajaxRequest.open('GET', 'http://o6sbyl9mg.bkt.clouddn.com/1.mp3', true)
+  ajaxRequest.open('GET', '1.mp3', true)
 
   ajaxRequest.responseType = 'arraybuffer'
 
