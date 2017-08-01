@@ -1,4 +1,17 @@
-#Voice-change-o-matic
-A Web Audio API-powered voice changer and visualizer.
+# Web-Audio-API-Practice
 
-[Run the demo live](https://mdn.github.io/voice-change-o-matic/)
+A Web Audio API-powered audio and visualizer.
+
+[Demo](https://yugasun.github.io/Web-Audio-API-Practice)
+
+## Development
+
+```shell
+npx http-server
+# Starting up http-server, serving ./
+# Available on:
+#  http://127.0.0.1:8080
+#  http://192.168.106.247:8080
+#  http://10.200.0.126:8080
+#  http://169.254.53.229:8080
+```
