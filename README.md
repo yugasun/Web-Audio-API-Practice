@@ -2,7 +2,7 @@
 
 A Web Audio API-powered audio and visualizer.
 
-[Demo](https://yugasun.github.io/Web-Audio-API-Practice)
+[Demo](http://demo.yugasun.com/webaudioapi)
 
 ## Development
 

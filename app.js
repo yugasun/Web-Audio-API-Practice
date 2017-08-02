@@ -1,13 +1,7 @@
-// fork getUserMedia for multiple browser versions, for those
-// that need prefixes
-
-navigator.getUserMedia = (navigator.getUserMedia ||
-  navigator.webkitGetUserMedia ||
-  navigator.mozGetUserMedia ||
-  navigator.msGetUserMedia)
-
-// set up forked web audio context, for multiple browsers
-// window. is needed otherwise Safari explodes
+var canvas = document.querySelector('#bar')
+var canvasCtx = canvas.getContext('2d')
+var canvas2 = document.querySelector('#circle')
+var canvasCtx2 = canvas2.getContext('2d')
 
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 var playAudioCtx = new (window.AudioContext || window.webkitAudioContext)()
@@ -29,6 +23,8 @@ var gainNode = audioCtx.createGain()
 // grab audio track via XHR for convolver node
 
 var soundSource, vSource
+var bufferLength
+var dataArray
 ajaxAudioTrack()
 function ajaxAudioTrack () {
   var ajaxRequest = new window.XMLHttpRequest()
@@ -61,7 +57,13 @@ function ajaxAudioTrack () {
 
         soundSource.start()
         vSource.start()
-        visualize()
+
+        analyser.fftSize = 4096
+        bufferLength = analyser.frequencyBinCount
+        dataArray = new Uint8Array(bufferLength)
+
+        visualize1()
+        visualize2()
       })
       .catch(function (e) { throw new Error('Error with decoding audio data' + e.err) })
   }
@@ -71,23 +73,11 @@ function ajaxAudioTrack () {
 
 // set up canvas context for visualizer
 
-var canvas = document.querySelector('.visualizer')
-var canvasCtx = canvas.getContext('2d')
-
-var intendedWidth = document.querySelector('.wrapper').clientWidth
-
-canvas.setAttribute('width', intendedWidth)
-
-function visualize () {
-  const WIDTH = canvas.width
-  const HEIGHT = canvas.height
-  var bufferLength
-  var dataArray
+function visualize1 () {
+  var WIDTH = canvas.width
+  var HEIGHT = canvas.height
   var draw
-  analyser.fftSize = 4096
-  bufferLength = analyser.frequencyBinCount
 
-  dataArray = new Uint8Array(bufferLength)
   canvasCtx.clearRect(0, 0, WIDTH, HEIGHT)
 
   draw = function () {
@@ -108,6 +98,38 @@ function visualize () {
       canvasCtx.fillRect(x, HEIGHT - barHeight / 2, barWidth, barHeight / 2)
 
       x += barWidth + 1
+    }
+  }
+
+  draw()
+}
+
+function visualize2 () {
+  var WIDTH = canvas2.width
+  var HEIGHT = canvas2.height
+  var draw
+  canvasCtx2.clearRect(0, 0, WIDTH, HEIGHT)
+  draw = function () {
+    window.requestAnimationFrame(draw)
+    analyser.getByteFrequencyData(dataArray)
+
+    canvasCtx2.fillStyle = 'rgb(0, 0, 0)'
+    canvasCtx2.fillRect(0, 0, WIDTH, HEIGHT)
+
+    var radius
+    var x = WIDTH / 2
+    var y = HEIGHT / 2
+
+    for (var i = 0; i < bufferLength / 100; i++) {
+      radius = Math.abs((dataArray[i] - 128) / 255 * 150)
+
+      canvasCtx2.beginPath()
+      canvasCtx2.fillStyle = 'rgb(' + (dataArray[i] + 100) + ',50,50)'
+      canvasCtx2.globalAlpha = 0.2
+      canvasCtx2.arc(x, y, radius, 0, 2 * Math.PI, false)
+
+      canvasCtx2.fill()
+      canvasCtx2.closePath()
     }
   }
 
