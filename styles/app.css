@@ -2,7 +2,7 @@
 
 html {
 	height: 100%;
-	font-family: 'Righteous', cursive;
+	font-family: 'Microsoft Yahei', cursive;
 	font-size: 10px;
 	background-color: black;
 }
@@ -15,7 +15,6 @@ body {
 
 h1, h2, label {
   font-size: 3rem;
-  font-family: 'Nova Square', cursive;
   text-align: center;
   color: black;
   text-shadow: -1px -1px 1px #aaa,
