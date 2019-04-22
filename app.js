@@ -25,11 +25,17 @@ var gainNode = audioCtx.createGain()
 var soundSource, vSource
 var bufferLength
 var dataArray
-ajaxAudioTrack()
+
+var startBtn = document.querySelector('#startBtn');
+
+startBtn.addEventListener('click', function() {
+    ajaxAudioTrack();
+});
+
 function ajaxAudioTrack () {
   var ajaxRequest = new window.XMLHttpRequest()
 
-  ajaxRequest.open('GET', '1.mp3', true)
+  ajaxRequest.open('GET', 'https://static.yugasun.com/yxqc.mp3/1.mp3', true)
 
   ajaxRequest.responseType = 'arraybuffer'
 

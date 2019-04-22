@@ -38,7 +38,7 @@ h1 {
 /* || main UI sections */
 
 header {
-  height: 120px;
+  height: 60px;
 }
 
 canvas {
@@ -51,4 +51,11 @@ canvas {
 
 #circle{
   margin-top: 30px;
+}
+
+.control {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  font-size: 20px;
 }

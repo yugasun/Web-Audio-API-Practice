@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Audio visualization</title>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Audio visualization</title>
 
-  <!--[if le IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="scripts/respond.js"></script>
-  <![endif]-->
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <link href="styles/normalize.css" rel="stylesheet" type="text/css">
-  <link href="styles/app.css" rel="stylesheet" type="text/css">
-</head>
+        <!--[if le IE 9]>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="scripts/respond.js"></script>
+        <![endif]-->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link href="styles/normalize.css" rel="stylesheet" type="text/css" />
+        <link href="styles/app.css" rel="stylesheet" type="text/css" />
+    </head>
 
-<body>
-  <div class="wrapper">
+    <body>
+        <div class="wrapper">
+            <header>
+                <h1>Audio visualization</h1>
+            </header>
+            <section class="control">
+              <button id="startBtn" size="default" type="default" loading="false" hover-class="button-hover">
+                Start
+              </button>
+            </section>
+            <section>
+                <canvas
+                    id="bar"
+                    class="visualizer"
+                    width="800"
+                    height="100"
+                ></canvas>
 
-    <header>
-      <h1>Audio visualization</h1>
-    </header>
-
-    <canvas id="bar" class="visualizer" width="800" height="100"></canvas>
-
-    <canvas id="circle" class="visualizer" width="800" height="300"></canvas>
-
-  </div>
-  <script src="./app.js"></script>
-</body>
+                <canvas
+                    id="circle"
+                    class="visualizer"
+                    width="800"
+                    height="300"
+                ></canvas>
+            </section>
+        </div>
+        <script src="./app.js"></script>
+    </body>
 </html>
