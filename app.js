@@ -35,7 +35,7 @@ startBtn.addEventListener('click', function() {
 function ajaxAudioTrack () {
   var ajaxRequest = new window.XMLHttpRequest()
 
-  ajaxRequest.open('GET', 'https://static.yugasun.com/yxqc.mp3/1.mp3', true)
+  ajaxRequest.open('GET', 'https://static.yugasun.com/yxqc.mp3', true)
 
   ajaxRequest.responseType = 'arraybuffer'
 
